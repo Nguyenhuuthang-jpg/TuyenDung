@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nộp Hồ Sơ Ứng Tuyển</title>
+    <meta name="description" content="Trang nộp hồ sơ ứng tuyển trực tuyến - Gửi CV của bạn ngay hôm nay." />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+      }
+
+      :root {
+        --primary: #667eea;
+        --primary-dark: #5a67d8;
+        --secondary: #764ba2;
+        --success: #48bb78;
+        --error: #f56565;
+        --warning: #ed8936;
+        --bg: #f0f2ff;
+        --card-bg: #ffffff;
+        --text: #1a202c;
+        --text-muted: #718096;
+        --border: #e2e8f0;
+        --radius: 16px;
+        --shadow: 0 4px 24px rgba(102, 126, 234, 0.12);
+        --shadow-lg: 0 20px 60px rgba(102, 126, 234, 0.2);
+      }
+
+      body {
+        background: var(--bg);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── Hero Header ── */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 60%, #f093fb 100%);
+        padding: 60px 24px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='25'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        animation: bg-float 20s linear infinite;
+      }
+
+      @keyframes bg-float {
+        from { background-position: 0 0; }
+        to   { background-position: 120px 120px; }
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .hero-badge .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4ade80;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.6; transform: scale(1.3); }
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 800;
+        color: white;
+        margin-bottom: 16px;
+        position: relative;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.85);
+        max-width: 560px;
+        margin: 0 auto 32px;
+        position: relative;
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        position: relative;
+        flex-wrap: wrap;
+      }
+
+      .hero-stat {
+        text-align: center;
+        color: white;
+      }
+
+      .hero-stat strong {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 800;
+      }
+
+      .hero-stat span {
+        font-size: 0.85rem;
+        opacity: 0.8;
+      }
+
+      /* ── Recruitment Info Banner ── */
+      .info-banner {
+        background: white;
+        border-left: 5px solid var(--primary);
+        margin: -40px 24px 0;
+        border-radius: var(--radius);
+        padding: 20px 28px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        z-index: 10;
+        flex-wrap: wrap;
+      }
+
+      .info-banner .icon-box {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+      }
+
+      .info-banner .info-text h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+
+      .info-banner .info-text p {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .banner-status {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 100px;
+      }
+
+      .banner-status.open {
+        background: #d1fae5;
+        color: #065f46;
+      }
+
+      .banner-status.closed {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      /* ── Main Layout ── */
+      .main {
+        max-width: 880px;
+        margin: 48px auto 60px;
+        padding: 0 24px;
+        width: 100%;
+        flex: 1;
+      }
+
+      /* ── Section Title ── */
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .section-title .title-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.1rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      /* ── Job Search ── */
+      .search-card {
+        background: white;
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        margin-bottom: 32px;
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+      }
+
+      .search-card:focus-within {
+        border-color: var(--primary);
+      }
+
+      .search-card i {
+        color: var(--primary);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .search-card input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 0.95rem;
+        color: var(--text);
+        background: transparent;
+      }
+
+      .search-card input::placeholder {
+        color: var(--text-muted);
+      }
+
+      /* ── Position Cards ── */
+      .positions-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+
+      .positions-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 36px;
+      }
+
+      .pos-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 100px;
+        border: 2px solid var(--border);
+        background: white;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text);
+        cursor: pointer;
+        transition: all 0.25s;
+        user-select: none;
+      }
+
+      .pos-chip:hover,
+      .pos-chip.active {
+        border-color: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 14px rgba(102,126,234,0.35);
+      }
+
+      .pos-chip i {
+        font-size: 0.85rem;
+      }
+
+      /* ── Form Card ── */
+      .form-card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .form-card-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 28px 32px;
+        color: white;
+      }
+
+      .form-card-header h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .form-card-header p {
+        opacity: 0.85;
+        font-size: 0.9rem;
+      }
+
+      .form-body {
+        padding: 32px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .form-group label .req {
+        color: #f56565;
+        margin-left: 2px;
+      }
+
+      .input-wrap {
+        position: relative;
+      }
+
+      .input-wrap .input-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        pointer-events: none;
+      }
+
+      .input-wrap.textarea-wrap .input-icon {
+        top: 14px;
+        transform: none;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 14px 12px 40px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        font-size: 0.9rem;
+        color: var(--text);
+        background: #fafbff;
+        transition: all 0.25s;
+        outline: none;
+        font-family: inherit;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary);
+        background: white;
+        box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
+      }
+
+      .form-group input.valid {
+        border-color: var(--success);
+      }
+
+      .form-group input.invalid {
+        border-color: var(--error);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .field-hint {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
+
+      .field-error {
+        font-size: 0.78rem;
+        color: var(--error);
+        display: none;
+      }
+
+      .field-error.show {
+        display: block;
+      }
+
+      /* ── Submit Button ── */
+      .form-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 28px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .privacy-note {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn-submit {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 36px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-submit::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: white;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(102,126,234,0.45);
+      }
+
+      .btn-submit:hover::after {
+        opacity: 0.08;
+      }
+
+      .btn-submit:active {
+        transform: translateY(-1px);
+      }
+
+      .btn-submit.loading {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+
+      .btn-submit .spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255,255,255,0.4);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        display: none;
+      }
+
+      .btn-submit.loading .spinner {
+        display: block;
+      }
+
+      .btn-submit.loading .btn-text {
+        display: none;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* ── Success State ── */
+      .success-screen {
+        display: none;
+        text-align: center;
+        padding: 60px 32px;
+      }
+
+      .success-screen .success-icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: white;
+        margin: 0 auto 28px;
+        animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      }
+
+      @keyframes pop-in {
+        from { transform: scale(0); opacity: 0; }
+        to   { transform: scale(1); opacity: 1; }
+      }
+
+      .success-screen h3 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+
+      .success-screen p {
+        color: var(--text-muted);
+        margin-bottom: 32px;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        border: 2px solid var(--primary);
+        border-radius: 10px;
+        color: var(--primary);
+        background: transparent;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+
+      .btn-back:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* ── Closed Banner ── */
+      .closed-banner {
+        background: white;
+        border-radius: var(--radius);
+        padding: 60px 32px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        display: none;
+      }
+
+      .closed-banner .closed-icon {
+        font-size: 4rem;
+        color: var(--warning);
+        margin-bottom: 20px;
+      }
+
+      .closed-banner h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+
+      .closed-banner p {
+        color: var(--text-muted);
+      }
+
+      /* ── Toast Notification ── */
+      .toast {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        padding: 14px 20px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        animation: toast-in 0.35s cubic-bezier(0.34,1.56,0.64,1);
+        max-width: 380px;
+      }
+
+      @keyframes toast-in {
+        from { transform: translateX(120%); opacity: 0; }
+        to   { transform: translateX(0); opacity: 1; }
+      }
+
+      .toast.success { background: linear-gradient(135deg, #48bb78, #38a169); }
+      .toast.error   { background: linear-gradient(135deg, #f56565, #e53e3e); }
+      .toast.info    { background: linear-gradient(135deg, #4299e1, #3182ce); }
+
+      /* ── Footer ── */
+      footer {
+        background: white;
+        border-top: 1px solid var(--border);
+        padding: 24px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      footer a:hover { text-decoration: underline; }
+
+      /* ── Responsive ── */
+      @media (max-width: 640px) {
+        .hero { padding: 40px 20px 60px; }
+        .info-banner { margin: -30px 16px 0; }
+        .main { padding: 0 16px; margin-top: 36px; }
+        .form-grid { grid-template-columns: 1fr; }
+        .form-body { padding: 24px 20px; }
+        .form-card-header { padding: 22px 20px; }
+        .hero-stats { gap: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ── Hero ── -->
+    <div class="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span id="heroStatus">Đang tuyển dụng</span>
+      </div>
+      <h1 id="heroCompany">Cơ Hội Nghề Nghiệp</h1>
+      <p>Tham gia đội ngũ của chúng tôi và cùng nhau xây dựng tương lai. Nộp hồ sơ chỉ trong vài phút!</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong id="statPositions">6</strong>
+          <span>Vị trí mở</span>
+        </div>
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>Phản hồi trong 48h</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Free</strong>
+          <span>Hoàn toàn miễn phí</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Info Banner ── -->
+    <div class="info-banner" id="infoBanner">
+      <div class="icon-box"><i class="fas fa-building"></i></div>
+      <div class="info-text">
+        <h3 id="bannerCompany">Đang tải...</h3>
+        <p id="bannerDate">Thời gian nhận hồ sơ đang được tải...</p>
+      </div>
+      <div class="banner-status open" id="bannerStatusBadge">
+        <i class="fas fa-circle" style="font-size:8px"></i>
+        <span id="bannerStatusText">Đang mở</span>
+      </div>
+    </div>
+
+    <!-- ── Main Content ── -->
+    <div class="main">
+
+      <!-- Search -->
+      <div class="search-card">
+        <i class="fas fa-search"></i>
+        <input type="text" id="jobSearchInput" placeholder="Tìm kiếm vị trí tuyển dụng..." />
+      </div>
+
+      <!-- Position Chips -->
+      <p class="positions-label"><i class="fas fa-briefcase"></i> Vị trí đang tuyển</p>
+      <div class="positions-grid" id="positionsGrid">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- Form Card -->
+      <div class="form-card" id="formCard">
+        <div class="form-card-header">
+          <h3><i class="fas fa-file-alt"></i> Nộp Hồ Sơ Ứng Tuyển</h3>
+          <p>Điền đầy đủ thông tin bên dưới. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.</p>
+        </div>
+        <div class="form-body">
+          <form id="applyForm" novalidate>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="fullName">Họ và tên <span class="req">*</span></label>
+                <div class="input-wrap">
+                  <i class="fas fa-user input-icon"></i>
+                  <input type="text" id="fullName" placeholder="Nguyễn Văn A" autocomplete="name" />
+                </div>
+                <span class="field-error" id="err-fullName">Vui lòng nhập họ tên</span>
+              </div>
+
+              <div class="form-group">
+                <label for="positionSelect">Vị trí ứng tuyển <span class="req">*</span></label>
+                <div class="input-wrap">
+                  <i class="fas fa-briefcase input-icon"></i>
+                  <select id="positionSelect">
+                    <option value="">Chọn vị trí</option>
+                  </select>
+                </div>
+                <span class="field-error" id="err-position">Vui lòng chọn vị trí</span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email <span class="req">*</span></label>
+                <div class="input-wrap">
+                  <i class="fas fa-envelope input-icon"></i>
+                  <input type="email" id="email" placeholder="example@email.com" autocomplete="email" />
+                </div>
+                <span class="field-error" id="err-email">Email không hợp lệ hoặc đã được dùng</span>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Số điện thoại <span class="req">*</span></label>
+                <div class="input-wrap">
+                  <i class="fas fa-phone input-icon"></i>
+                  <input type="tel" id="phone" placeholder="0123456789" autocomplete="tel" />
+                </div>
+                <span class="field-error" id="err-phone">Vui lòng nhập số điện thoại hợp lệ</span>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="cvLink">Link CV (Google Drive / PDF URL) <span class="req">*</span></label>
+                <div class="input-wrap">
+                  <i class="fas fa-link input-icon"></i>
+                  <input type="url" id="cvLink" placeholder="https://drive.google.com/..." />
+                </div>
+                <span class="field-hint"><i class="fas fa-info-circle"></i> Đảm bảo link CV được chia sẻ công khai</span>
+                <span class="field-error" id="err-cvLink">Vui lòng nhập URL hợp lệ</span>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="notes">Giới thiệu bản thân / Ghi chú</label>
+                <div class="input-wrap textarea-wrap">
+                  <i class="fas fa-comment input-icon"></i>
+                  <textarea id="notes" placeholder="Hãy nói một chút về kinh nghiệm, kỹ năng nổi bật của bạn..."></textarea>
+                </div>
+              </div>
+
+            </div><!-- /form-grid -->
+
+            <div class="form-footer">
+              <p class="privacy-note">
+                <i class="fas fa-shield-alt"></i>
+                Thông tin của bạn được bảo mật tuyệt đối
+              </p>
+              <button type="submit" class="btn-submit" id="submitBtn">
+                <div class="spinner"></div>
+                <span class="btn-text"><i class="fas fa-paper-plane"></i> Gửi Hồ Sơ</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Success State -->
+          <div class="success-screen" id="successScreen">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h3>Gửi hồ sơ thành công!</h3>
+            <p>Cảm ơn bạn đã ứng tuyển. Chúng tôi sẽ xem xét hồ sơ và liên hệ lại trong vòng <strong>48 giờ</strong>.</p>
+            <button class="btn-back" onclick="resetForm()">
+              <i class="fas fa-plus"></i> Nộp thêm hồ sơ khác
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Closed Banner -->
+      <div class="closed-banner" id="closedBanner">
+        <div class="closed-icon"><i class="fas fa-calendar-times"></i></div>
+        <h3>Đợt tuyển dụng đã kết thúc</h3>
+        <p>Cảm ơn bạn đã quan tâm. Vui lòng theo dõi để cập nhật đợt tuyển dụng tiếp theo.</p>
+      </div>
+
+    </div>
+
+
+
+    <!-- ── Scripts ── -->
+    <script src="js/database.js"></script>
+    <script>
+      // ── Init ──
+      db.loadData();
+      const settings = db.getRecruitmentSettings();
+
+      const DEFAULT_POSITIONS = [
+        { label: 'Frontend Developer', icon: 'fa-code' },
+        { label: 'Backend Developer',  icon: 'fa-server' },
+        { label: 'Fullstack Developer',icon: 'fa-layer-group' },
+        { label: 'UI/UX Designer',     icon: 'fa-paint-brush' },
+        { label: 'Project Manager',    icon: 'fa-tasks' },
+        { label: 'Tester',             icon: 'fa-bug' },
+      ];
+
+      // ── Populate info ──
+      function initPage() {
+        const company = settings.companyName || 'Công ty';
+        document.getElementById('heroCompany').textContent = company;
+        document.getElementById('bannerCompany').textContent = company;
+
+        const start = formatDate(settings.startDate);
+        const end   = formatDate(settings.endDate);
+        document.getElementById('bannerDate').textContent =
+          `Thời gian nhận hồ sơ: ${start} → ${end}`;
+
+        const isOpen = settings.recruitmentEnabled;
+        document.getElementById('heroStatus').textContent = isOpen ? 'Đang tuyển dụng' : 'Đã đóng';
+        document.getElementById('bannerStatusText').textContent = isOpen ? 'Đang mở' : 'Đã đóng';
+
+        const statusBadge = document.getElementById('bannerStatusBadge');
+        statusBadge.className = `banner-status ${isOpen ? 'open' : 'closed'}`;
+
+        if (!isOpen) {
+          document.getElementById('formCard').style.display = 'none';
+          document.getElementById('closedBanner').style.display = 'block';
+        }
+
+        buildPositionChips();
+        buildPositionSelect();
+      }
+
+      function getPositions() {
+        // Lấy từ cài đặt admin, fallback về mặc định nếu chưa có
+        const pos = settings.positions;
+        if (Array.isArray(pos) && pos.length > 0) return pos;
+        return DEFAULT_POSITIONS;
+      }
+
+      function formatDate(d) {
+        if (!d) return '–';
+        const dt = new Date(d);
+        return isNaN(dt) ? d : dt.toLocaleDateString('vi-VN');
+      }
+
+      // ── Position chips ──
+      function buildPositionChips() {
+        const positions = getPositions();
+        document.getElementById('statPositions').textContent = positions.length;
+
+        const grid = document.getElementById('positionsGrid');
+        grid.innerHTML = positions.map(p => `
+          <div class="pos-chip" data-pos="${esc(p.label)}" onclick="selectPosition('${esc(p.label)}', this)">
+            <i class="fas ${p.icon || 'fa-briefcase'}"></i> ${esc(p.label)}
+          </div>
+        `).join('');
+
+        if (positions.length === 0) {
+          grid.innerHTML = '<p style="color:#999;font-size:13px">Chưa có vị trí tuyển dụng.</p>';
+        }
+      }
+
+      function selectPosition(pos, el) {
+        document.querySelectorAll('.pos-chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('positionSelect').value = pos;
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // ── Position select ──
+      function buildPositionSelect() {
+        const positions = getPositions();
+        const sel = document.getElementById('positionSelect');
+        sel.innerHTML = '<option value="">Chọn vị trí</option>' +
+          positions.map(p => `<option value="${esc(p.label)}">${esc(p.label)}</option>`).join('');
+      }
+
+      // ── Job search filter ──
+      document.getElementById('jobSearchInput').addEventListener('input', function() {
+        const kw = this.value.toLowerCase();
+        document.querySelectorAll('.pos-chip').forEach(chip => {
+          chip.style.display = chip.dataset.pos.toLowerCase().includes(kw) ? '' : 'none';
+        });
+      });
+
+      // ── Form validation ──
+      function validate() {
+        let ok = true;
+
+        const fullName = document.getElementById('fullName').value.trim();
+        showErr('err-fullName', !fullName);
+        if (!fullName) ok = false;
+
+        const pos = document.getElementById('positionSelect').value;
+        showErr('err-position', !pos);
+        if (!pos) ok = false;
+
+        const email = document.getElementById('email').value.trim();
+        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const emailTaken = db.candidates.some(c => c.email === email);
+        showErr('err-email', !emailValid || emailTaken);
+        if (!emailValid || emailTaken) ok = false;
+
+        const phone = document.getElementById('phone').value.trim();
+        const phoneValid = /^[0-9+\-\s]{9,15}$/.test(phone);
+        showErr('err-phone', !phoneValid);
+        if (!phoneValid) ok = false;
+
+        const cvLink = document.getElementById('cvLink').value.trim();
+        let cvValid = false;
+        try { cvValid = !!new URL(cvLink); } catch(e) {}
+        showErr('err-cvLink', !cvValid);
+        if (!cvValid) ok = false;
+
+        return ok;
+      }
+
+      function showErr(id, show) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show', show);
+      }
+
+      // ── Submit ──
+      document.getElementById('applyForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!validate()) return;
+
+        const btn = document.getElementById('submitBtn');
+        btn.classList.add('loading');
+
+        // Simulate async delay for UX
+        await new Promise(r => setTimeout(r, 900));
+
+        const candidateData = {
+          fullName: document.getElementById('fullName').value.trim(),
+          position: document.getElementById('positionSelect').value,
+          email: document.getElementById('email').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          cvLink: document.getElementById('cvLink').value.trim(),
+          notes: document.getElementById('notes').value.trim(),
+          experience: 0,
+        };
+
+        db.addPublicCandidate(candidateData);
+
+        btn.classList.remove('loading');
+
+        // Show success
+        document.getElementById('applyForm').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+
+        showToast('Gửi hồ sơ thành công! Chúng tôi sẽ liên hệ sớm.', 'success');
+      });
+
+      function resetForm() {
+        document.getElementById('applyForm').reset();
+        document.getElementById('applyForm').style.display = '';
+        document.getElementById('successScreen').style.display = 'none';
+        document.querySelectorAll('.pos-chip').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+      }
+
+      // ── Toast ──
+      function showToast(msg, type = 'info') {
+        const t = document.createElement('div');
+        t.className = `toast ${type}`;
+        const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+        t.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i> ${msg}`;
+        document.body.appendChild(t);
+        setTimeout(() => {
+          t.style.transition = 'all 0.4s';
+          t.style.transform = 'translateX(120%)';
+          t.style.opacity = '0';
+          setTimeout(() => t.remove(), 400);
+        }, 4000);
+      }
+
+      function esc(s) {
+        if (!s) return '';
+        return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[m]);
+      }
+
+      // ── Run ──
+      initPage();
+    </script>
+  </body>
+</html>
